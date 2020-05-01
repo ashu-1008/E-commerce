@@ -1,0 +1,49 @@
+{% extends 'blog/base.html'%}
+    {% block title %}Hello, world! blog{% endblock %}
+
+ {% block body%}
+<div class="container my-5">
+    {% for a in data_list%}
+    <div class="row mb-2">
+        <div class="col-md-6">
+          <div class="card flex-md-row mb-4 box-shadow h-md-250">
+            <div class="card-body d-flex flex-column align-items-start">
+              <strong class="d-inline-block mb-2 text-primary">{{a.0.title}}</strong>
+              <h3 class="mb-0">
+                <a class="text-dark" href="#">Featured post</a>
+              </h3>
+              <div class="mb-1 text-muted">{{a.0.pub_date}}</div>
+              <p class="card-text mb-auto">{{a.0.chead0|slice:":100"}}...</p>
+              <a href="blogpost/{{a.0.post_id}}">Continue reading</a>
+            </div>
+            <img class="card-img-right flex-auto d-none d-md-block" alt="" style="width: 200px; height: 250px;"
+                 src="/media/{{a.0.thumbnail}}" data-holder-rendered="true">
+          </div>
+        </div>
+        {%if a|length == 2%}
+         <div class="col-md-6">
+          <div class="card flex-md-row mb-4 box-shadow h-md-250">
+            <div class="card-body d-flex flex-column align-items-start">
+              <strong class="d-inline-block mb-2 text-primary">{{a.1.title}}</strong>
+              <h3 class="mb-0">
+                <a class="text-dark" href="#">Featured post</a>
+              </h3>
+              <div class="mb-1 text-muted">{{a.1.pub_date}}</div>
+              <p class="card-text mb-auto">{{a.1.chead0|slice:":100"}}...</p>
+              <a href="blogpost/{{a.1.post_id}}">Continue reading</a>
+            </div>
+            <img class="card-img-right flex-auto d-none d-md-block" alt="" style="width: 200px; height: 250px;"
+                 src="/media/{{a.1.thumbnail}}" data-holder-rendered="true">
+          </div>
+        </div>
+        {% endif %}
+      </div>
+
+    {% endfor %}
+    </div>
+  {% endblock %}
+
+    <!--
+    {% load static %}
+    <a href="{% static 'blog/mystatic.txt' %}"><img src="{% static 'blog/hacker.jpg'%}"></a>
+    -->
